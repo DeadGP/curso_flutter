@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:curso_flutter_web/class/class.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -133,6 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       dato1 = double.tryParse(num1.text);
                       dato2 = double.tryParse(num2.text);
                       suma(num1: dato1, num2: dato2, opcion: 'suma');
+                      // print(Coche(num1.text, num2.text));
                     } catch (e) {
                       print(num1.text);
                       print(num2.text);
