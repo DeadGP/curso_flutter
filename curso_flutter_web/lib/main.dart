@@ -35,30 +35,40 @@ class _MyHomePageState extends State<MyHomePage> {
   dynamic signo = '?', resultado = 0;
   TextEditingController num1 = TextEditingController();
   TextEditingController num2 = TextEditingController();
-  void suma({double num1 = 0, double num2 = 0}) {
-    resultado = num1 + num2;
-    setState(() {
-      signo = '+';
-      resultado = resultado;
-    });
-  }
-
-  void resta({double num1 = 0, double num2 = 0}) {
-    setState(() {
-      signo = '-';
-    });
-  }
-
-  void division({double num1 = 0, double num2 = 0}) {
-    setState(() {
-      signo = '/';
-    });
-  }
-
-  void multiplicacion({double num1 = 0, double num2 = 0}) {
-    setState(() {
-      signo = '*';
-    });
+  void suma({double num1 = 0, double num2 = 0, dynamic opcion}) {
+    switch (opcion) {
+      case 'suma':
+        resultado = num1 + num2;
+        setState(() {
+          signo = '+';
+          resultado = resultado;
+        });
+        break;
+      case 'resta':
+        resultado = num1 - num2;
+        setState(() {
+          signo = '-';
+          resultado = resultado;
+        });
+        break;
+      case 'division':
+        resultado = num1 / num2;
+        setState(() {
+          signo = '/';
+          resultado = resultado;
+        });
+        break;
+      case 'mult':
+        resultado = num1 * num2;
+        setState(() {
+          signo = '*';
+          resultado = resultado;
+        });
+        break;
+      default:
+        print('Error la opción no existe.');
+        break;
+    }
   }
 
   @override
@@ -122,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       dynamic dato1, dato2;
                       dato1 = double.tryParse(num1.text);
                       dato2 = double.tryParse(num2.text);
-                      suma(num1: dato1, num2: dato2);
+                      suma(num1: dato1, num2: dato2, opcion: 'suma');
                     } catch (e) {
                       print(num1.text);
                       print(num2.text);
@@ -132,17 +142,44 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: const Icon(Icons.add)),
               IconButton(
                   onPressed: () {
-                    resta();
+                    try {
+                      dynamic dato1, dato2;
+                      dato1 = double.tryParse(num1.text) ?? 0;
+                      dato2 = double.tryParse(num2.text) ?? 0;
+                      suma(num1: dato1, num2: dato2, opcion: 'resta');
+                    } catch (e) {
+                      print(num1.text);
+                      print(num2.text);
+                      print(e.toString());
+                    }
                   },
                   icon: const Icon(Icons.subscript_rounded)),
               IconButton(
                   onPressed: () {
-                    multiplicacion();
+                    try {
+                      dynamic dato1, dato2;
+                      dato1 = double.tryParse(num1.text);
+                      dato2 = double.tryParse(num2.text);
+                      suma(num1: dato1, num2: dato2, opcion: 'division');
+                    } catch (e) {
+                      print(num1.text);
+                      print(num2.text);
+                      print(e.toString());
+                    }
                   },
                   icon: const Icon(Icons.subscript)),
               IconButton(
                   onPressed: () {
-                    division();
+                    try {
+                      dynamic dato1, dato2;
+                      dato1 = double.tryParse(num1.text);
+                      dato2 = double.tryParse(num2.text);
+                      suma(num1: dato1, num2: dato2, opcion: 'mult');
+                    } catch (e) {
+                      print(num1.text);
+                      print(num2.text);
+                      print(e.toString());
+                    }
                   },
                   icon: const Icon(Icons.drive_eta)),
             ],
