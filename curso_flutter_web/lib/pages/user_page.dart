@@ -2,7 +2,8 @@ import 'package:curso_flutter_web/drawers/menu_drawers.dart';
 import 'package:flutter/material.dart';
 
 class UserPage extends StatefulWidget {
-  UserPage({Key? key}) : super(key: key);
+  dynamic user;
+  UserPage({Key? key, this.user}) : super(key: key);
 
   @override
   State<UserPage> createState() => _UserPageState();
@@ -11,6 +12,7 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
+    // print(widget.user['name']);
     return Scaffold(
       drawer: const NavDrawer(),
       appBar: AppBar(

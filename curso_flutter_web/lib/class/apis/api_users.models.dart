@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 LoginUsers loginUsers(String str) => LoginUsers.fromJson(json.decode(str));
+RegisterUsers registerUsers(String str) =>
+    RegisterUsers.fromJson(json.decode(str));
 
 class LoginUsers {
   dynamic ok, user, access_token, code, message, error, branch;
@@ -31,5 +33,24 @@ class LoginUsers {
         'message': message,
         'error': error,
         'branch': branch
+      };
+}
+
+class RegisterUsers {
+  dynamic name, lastname, email, password;
+
+  RegisterUsers({this.name, this.lastname, this.email, this.password});
+
+  factory RegisterUsers.fromJson(Map<String, dynamic> json) => RegisterUsers(
+      name: json['name'],
+      lastname: json['lastname'],
+      email: json['email'],
+      password: json['password']);
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'lastname': lastname,
+        'email': email,
+        'password': password
       };
 }

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: 'upage',
+      initialRoute: 'login',
       routes: {
         'upage': (BuildContext context) => UserPage(),
         'login': (BuildContext cointext) => Login()
